@@ -1,7 +1,7 @@
 from tkinter import ttk, messagebox
 from tkinter.font import BOLD
 from persistence.repository.auth_user_repository import AuthUserRepository
-from forms.master.form_master import MasterPanel
+from forms.master.form_master_designer import MasterPanelDesinger
 from forms.login.form_login_designer import FormLoginDesigner 
 from persistence.model import Auth_user
 from forms.registration.form import FormRegister
@@ -39,7 +39,7 @@ class FormLogin(FormLoginDesigner):
         b_password = end_dec.decrypt(user.password)
         if (password == b_password):
             self.ventana.destroy()
-            MasterPanel()
+            MasterPanelDesinger()
         elif(password != b_password or user != self.usuario.get()):
             messagebox.showerror( message= "El usuario o contraseña no son validos", title= "Mensaje")
 

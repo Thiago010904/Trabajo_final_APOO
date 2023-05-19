@@ -5,6 +5,7 @@ import util.generic as utl
 import tkinter as tk
 
 class FormLoginDesigner:
+    
     @abstractmethod
     def verificar(self):
         pass
@@ -23,6 +24,7 @@ class FormLoginDesigner:
         self.ventana.resizable(width= 0, height= 0)
         utl.centrar_ventana(self.ventana, 800, 500)
         
+        
 
         logo = utl.leer_imagen("./Plantillas/logo.png", (250, 250))
 
@@ -40,7 +42,7 @@ class FormLoginDesigner:
         ## CONTENEDOR TITULO ##
         frame_form_top = tk.Frame(frame_form,height= 50, bd= 0, relief= tk.SOLID, bg= "black")
         frame_form_top.pack(side= "top", fill= tk.X)
-        title = tk.Label(frame_form_top, text= "Inicio de sesión", font=("Times", 30), fg= "#666a88", bg= "red", pady= 50)
+        title = tk.Label(frame_form_top, text= "Inicio de sesión", font=("Times", 30), fg= "#666a88", bg= "#fcfcfc", pady= 50)
         title.pack(expand= tk.YES, fill= tk.BOTH) 
 
         ## CONTENEDOR PARA EL FORMULARIO ##
@@ -69,5 +71,5 @@ class FormLoginDesigner:
             "Times", 15), bg= "#fcfcfc", bd= 0, fg= "#3a7ff6", command= self.user_register)
         registrar.pack(fill= tk.X, padx= 20, pady= 20)
         registrar.bind("<Return>", (lambda event: self.user_register()))
-        
+
         self.ventana.mainloop()
