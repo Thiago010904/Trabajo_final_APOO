@@ -16,7 +16,7 @@ class FormLibros:
         utl.centrar_ventana(self.ventana, 700, 400)
         
         self.libros_disponibles = [
-            {"titulo": "Necronomicon", "autor": "HP Lovecraft", "precio": 30},
+            {"titulo": "Necronomicon", "autor": "HP Lovecraft", "precio": 100},
             {"titulo": "Cien años de soledad", "autor": "Gabriel Garcia Marquez", "precio": 15},
             {"titulo": "Don Quijote de la mancha", "autor": "Miguel de Cervantes", "precio": 20},
             {"titulo": "Diario", "autor": "Ana Frank", "precio": 20},
@@ -26,6 +26,7 @@ class FormLibros:
         ]
         
         self.libros_comprados = []
+        print(self.libros_comprados)
         self.cupones = 100
        
         # Mostrar la lista de libros disponibles en la ventana
@@ -39,6 +40,9 @@ class FormLibros:
 
         self.actualizar_visualizacion()
 
+        
+        self.ventana.mainloop()
+
 
     def comprar_libro_seleccionado(self, libro):
             if libro not in self.libros_comprados:
@@ -51,11 +55,21 @@ class FormLibros:
                         self.libros_comprados.append(libro) 
                         self.libros_disponibles.remove(libro)
                         self.cupones -= libro['precio']  # Restar el precio del libro a los cupones
-                        messagebox.showinfo("Compra exitosa", f"Has comprado el libro '{libro['titulo']}'")
+                        messagebox.showinfo("Compra exitosa", f"Has comprado el libro '{libro['titulo']} y te quedan {self.cupones} cupones'")
                         self.actualizar_visualizacion()
                         self.ventana.grab_release()  # Liberar el primer plano de la ventana
+                elif self.cupones == 0:
+                    # Mostrar mensaje de recarga de cupones
+                    respuesta = messagebox.askyesno("Recargar cupones", "Ya no tienes cupones ¿Deseas recargar?")
+                    if respuesta:
+                        cantidad_recarga = simpledialog.askinteger("Recargar cupones", "Ingrese la cantidad de cupones a recargar:")
+                        if cantidad_recarga:
+                            self.cupones += cantidad_recarga
+                            self.actualizar_visualizacion()
+                            messagebox.showinfo("Recarga exitosa", f"Se han recargado {cantidad_recarga} cupones. Cupones restantes: {self.cupones}")
+
                 else:
-                    messagebox.showinfo("Cupones insuficientes", "No tienes suficientes cupones para comprar este libro.")
+                    messagebox.showinfo("Cupones insuficientes", "No tienes suficientes cupones para comprar este libro.")                 
             else:
                 messagebox.showinfo("Libro repetido", f"El libro '{libro['titulo']}' ya ha sido comprado")          
                 
@@ -90,5 +104,4 @@ class FormLibros:
 
     
 
-        self.ventana.mainloop()
     

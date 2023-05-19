@@ -4,6 +4,7 @@ from tkinter import ttk, messagebox
 from abc import abstractmethod
 from forms.login.form_login_designer import FormLoginDesigner
 from forms.master.forms_libros import FormLibros
+from forms.master.form_list_libros import ListLibros
 import util.generic as utl
 import tkinter as tk
 
@@ -12,6 +13,10 @@ class MasterPanelDesinger:
 
     def comprar_libro(self):
         FormLibros().mainloop()
+
+    def ver_libros(self):
+        ListLibros().mainloop()
+
 
     def __init__(self):
         self.ventana = tk.Tk()
@@ -53,8 +58,8 @@ class MasterPanelDesinger:
         titlemenu = tk.Label(frame_form_top, text= "¿Qué deseas hacer?", font=("Times", 20), fg= "#666a88", bg= "#fcfcfc", pady= 10) 
         titlemenu.pack(expand= tk.YES, fill= tk.BOTH)
 
-        titlecupon = tk.Label(frame_form_top, text= f"Tus cupones actuales son de: {self.cupones} ", font=("Times", 15), fg= "#666a88", bg= "#fcfcfc", pady= 5) 
-        titlecupon.pack(expand= tk.YES, fill= tk.BOTH)
+        # titlecupon = tk.Label(frame_form_top, text= f"Tus cupones actuales son de: {self.cupones} ", font=("Times", 15), fg= "#666a88", bg= "#fcfcfc", pady= 5) 
+        # titlecupon.pack(expand= tk.YES, fill= tk.BOTH)
 
 
 
@@ -67,10 +72,10 @@ class MasterPanelDesinger:
         boton1.pack(fill= tk.X, padx= 15, pady= 15)
         boton1.bind("<Return>", (lambda event: self.comprar_libro()))
 
-        boton2 = tk.Button(frame_boton, text= "Ver libros comprados", font= ("Times", 15, BOLD), bg= "#3a7ff6", bd= 0, fg= "#fff")
+        boton2 = tk.Button(frame_boton, text= "Ver libros comprados", font= ("Times", 15, BOLD), bg= "#3a7ff6", bd= 0, fg= "#fff", command= self.ver_libros)
         boton2.pack(fill= tk.X, padx= 15, pady= 15)
-
-
+        boton2.bind("<Return>", (lambda event: self.ver_libros()))
+        
         self.ventana.mainloop()
     
     
