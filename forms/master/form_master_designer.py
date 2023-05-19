@@ -77,5 +77,5 @@ class MasterPanelDesinger:
         boton2.bind("<Return>", (lambda event: self.ver_libros()))
         
         self.ventana.mainloop()
-    
+        #:D
     
