@@ -57,7 +57,7 @@ class FormLibros:
                         self.cupones -= libro['precio']  # Restar el precio del libro a los cupones
                         messagebox.showinfo("Compra exitosa", f"Has comprado el libro '{libro['titulo']} y te quedan {self.cupones} cupones'")
                         self.actualizar_visualizacion()
-                        self.ventana.grab_release()  # Liberar el primer plano de la ventana
+                        self.ventana.grab_release() 
                 elif self.cupones == 0:
                     # Mostrar mensaje de recarga de cupones
                     respuesta = messagebox.askyesno("Recargar cupones", "Ya no tienes cupones ¿Deseas recargar?")
@@ -66,8 +66,8 @@ class FormLibros:
                         if cantidad_recarga:
                             self.cupones += cantidad_recarga
                             self.actualizar_visualizacion()
+                            self.ventana.grab_release() 
                             messagebox.showinfo("Recarga exitosa", f"Se han recargado {cantidad_recarga} cupones. Cupones restantes: {self.cupones}")
-
                 else:
                     messagebox.showinfo("Cupones insuficientes", "No tienes suficientes cupones para comprar este libro.")                 
             else:
