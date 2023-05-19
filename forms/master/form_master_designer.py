@@ -1,11 +1,17 @@
 from tkinter.font import BOLD
 from tkinter import ttk
+from tkinter import ttk, messagebox
+from abc import abstractmethod
 from forms.login.form_login_designer import FormLoginDesigner
+from forms.master.forms_libros import FormLibros
 import util.generic as utl
 import tkinter as tk
 
 
 class MasterPanelDesinger:
+
+    def comprar_libro(self):
+        FormLibros().mainloop()
 
     def __init__(self):
         self.ventana = tk.Tk()
@@ -26,14 +32,18 @@ class MasterPanelDesinger:
         label = tk.Label(frame_logo, image=logo, bg="#fcfcfc")
         label.place(x=0, y=0, width=150, height=150) 
 
+        ## BOTÓN SALIR ##
+        frame_boton1 = tk.Frame(frame_logo, bd=0, width=200, height= 300, relief=tk.SOLID, padx=10, pady=10, bg="#fcfcfc")
+        frame_boton1.pack(side= "bottom", expand=tk.NO, fill=tk.BOTH)   
 
-        frame_form = tk.Frame(self.ventana, bd=0, width=200, height=10, relief=tk.SOLID, padx=10, pady=10, bg="blue")
+        boton_logo = tk.Button(frame_boton1, text="Salir libroteca", font=("Times", 15, BOLD), bg="#3a7ff6", bd=0, fg="#fff", command= self.ventana.destroy)
+        boton_logo.pack(side="top", padx= 15, pady= 130)
+        boton_logo.bind("<Return>", (lambda event: self.ventana.destroy()))
+
+        ## FRAME PARA LA INFORMACIÓN Y TITULO ##
+        frame_form = tk.Frame(self.ventana, bd=0, width=200, height=10, relief=tk.SOLID, padx=10, pady=10, bg="#fcfcfc")
         frame_form.pack(side= "bottom", expand= tk.YES, fill=tk.BOTH)
 
-        
-       
-         
-        ## FRAME PARA LA INFORMACIÓN Y TITULO ##
         frame_form_top = tk.Frame(frame_form,height= 50, bd= 0, relief= tk.SOLID, bg= "black")
         frame_form_top.pack(side= "top", fill= tk.X)
 
@@ -46,35 +56,21 @@ class MasterPanelDesinger:
         titlecupon = tk.Label(frame_form_top, text= f"Tus cupones actuales son de: {self.cupones} ", font=("Times", 15), fg= "#666a88", bg= "#fcfcfc", pady= 5) 
         titlecupon.pack(expand= tk.YES, fill= tk.BOTH)
 
+
+
+        ## LOGICA DEL BOTÓN ##
+
         frame_boton = tk.Frame(frame_form, bd=0, relief=tk.SOLID, bg="#fcfcfc")
         frame_boton.pack(side="bottom", fill=tk.X, padx=20, pady=20)
 
-        boton1 = tk.Button(frame_boton, text= "boton1", font= ("Times", 15, BOLD), bg= "#3a7ff6", bd= 0, fg= "#fff")
+        boton1 = tk.Button(frame_boton, text= "Comprar libro", font= ("Times", 15, BOLD), bg= "#3a7ff6", bd= 0, fg= "#fff", command= self.comprar_libro)
         boton1.pack(fill= tk.X, padx= 15, pady= 15)
+        boton1.bind("<Return>", (lambda event: self.comprar_libro()))
 
-        boton2 = tk.Button(frame_boton, text= "boton2", font= ("Times", 15, BOLD), bg= "#3a7ff6", bd= 0, fg= "#fff")
+        boton2 = tk.Button(frame_boton, text= "Ver libros comprados", font= ("Times", 15, BOLD), bg= "#3a7ff6", bd= 0, fg= "#fff")
         boton2.pack(fill= tk.X, padx= 15, pady= 15)
 
-        boton3 = tk.Button(frame_boton, text= "boton3", font= ("Times", 15, BOLD), bg= "#3a7ff6", bd= 0, fg= "#fff")
-        boton3.pack(fill= tk.X, padx= 15, pady= 15)
-
 
         self.ventana.mainloop()
     
     
-    """
-        registrar = tk.Button(frame_form, text="Registrar", font=(
-            "Times", 15), bg="#F87474", bd=0, fg="#fcfcfc", command=self.pepe)
-        registrar.pack(fill=tk.X, padx=20, pady=20)
-        registrar.bind("<Return>", (lambda event: self.pepe()))
-        self.lblpepe = tk.Label(self.ventana)
-        self.lblpepe.pack()
-        self.ventana.mainloop()
-
-    
-    def pepe(self):
-        
-        ola = self.lista.pop()
-        print(self.lista)
-        self.lblpepe.config(text=ola)
-    """
