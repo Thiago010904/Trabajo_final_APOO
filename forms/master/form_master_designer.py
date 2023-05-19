@@ -25,7 +25,6 @@ class MasterPanelDesinger:
         self.ventana.config(bg= "#fcfcfc")
         self.ventana.resizable(width = 0, height = 0)
         self.cupones = 100
-        # self.lista = [1,2,3,4,5]
         utl.centrar_ventana(self.ventana, 800, 500)
         
 
@@ -77,5 +76,5 @@ class MasterPanelDesinger:
         boton2.bind("<Return>", (lambda event: self.ver_libros()))
         
         self.ventana.mainloop()
-        #:D
+    
     
