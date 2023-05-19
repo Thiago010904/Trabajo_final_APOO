@@ -101,7 +101,7 @@ class FormLibros:
             columna = contador % libros_por_fila
             self.canvas.create_window(x + columna * 220, y + fila * 180, anchor="nw", window=libro_frame)
             contador += 1
-
+            # :D
     
 
     
