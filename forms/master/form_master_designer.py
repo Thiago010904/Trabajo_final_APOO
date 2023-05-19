@@ -63,7 +63,7 @@ class MasterPanelDesinger:
 
 
 
-        ## LOGICA DEL BOTÓN ###
+        ## LOGICA DEL BOTÓN ##
 
         frame_boton = tk.Frame(frame_form, bd=0, relief=tk.SOLID, bg="#fcfcfc")
         frame_boton.pack(side="bottom", fill=tk.X, padx=20, pady=20)
