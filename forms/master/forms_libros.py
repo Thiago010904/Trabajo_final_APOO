@@ -22,14 +22,14 @@ class FormLibros:
             {"titulo": "Diario", "autor": "Ana Frank", "precio": 20},
             {"titulo": "El Señor de los Anillos", "autor": "J.R.R Tolkien", "precio": 23},
             {"titulo": "El código Da Vinci", "autor": "Dan Brown", "precio": 30},
-            # Agrega más libros aquí
+            
         ]
         
         self.libros_comprados = []
         print(self.libros_comprados)
         self.cupones = 100
        
-        # Mostrar la lista de libros disponibles en la ventana
+    
         self.canvas = tk.Canvas(self.ventana, bg="#fcfcfc", width=800, height=400)
         self.canvas.pack()
 
@@ -46,20 +46,21 @@ class FormLibros:
 
     def comprar_libro_seleccionado(self, libro):
             if libro not in self.libros_comprados:
-            # Verificar si hay suficientes cupones para comprar el libro
+            
                 if self.cupones >= libro['precio']:
-                    # Mostrar un cuadro de diálogo para confirmar la compra
+                  
                     confirmacion = messagebox.askyesno("Confirmación de compra", f"¿Estás seguro de comprar el libro '{libro['titulo']}'?")
                     if confirmacion:
-                        self.ventana.grab_set()  # Capturar la ventana actual en primer plano
+                        self.ventana.grab_set()  
                         self.libros_comprados.append(libro) 
                         self.libros_disponibles.remove(libro)
-                        self.cupones -= libro['precio']  # Restar el precio del libro a los cupones
+                        self.cupones -= libro['precio']  
                         messagebox.showinfo("Compra exitosa", f"Has comprado el libro '{libro['titulo']} y te quedan {self.cupones} cupones'")
                         self.actualizar_visualizacion()
                         self.ventana.grab_release() 
+                        
                 elif self.cupones == 0:
-                    # Mostrar mensaje de recarga de cupones
+                  
                     respuesta = messagebox.askyesno("Recargar cupones", "Ya no tienes cupones ¿Deseas recargar?")
                     if respuesta:
                         cantidad_recarga = simpledialog.askinteger("Recargar cupones", "Ingrese la cantidad de cupones a recargar:")
@@ -101,7 +102,6 @@ class FormLibros:
             columna = contador % libros_por_fila
             self.canvas.create_window(x + columna * 220, y + fila * 180, anchor="nw", window=libro_frame)
             contador += 1
-            # :D
-    
+        
 
     
